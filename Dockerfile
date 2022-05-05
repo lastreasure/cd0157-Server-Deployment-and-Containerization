@@ -1,13 +1,10 @@
 FROM python:stretch
 
-WORKDIR /app
 COPY . /app
+WORKDIR /app
 
 RUN pip install --upgrade pip
-COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
-RUN pip install Flask==2.1.0
-RUN Flask==2.1.0
+EXPOSE 8080
 
-CMD ["gunicorn", "-b", ":8080", "main:APP"]
-
+ENTRYPOINT ["gunicorn", "-b", ":8080", "main:APP"]
